@@ -27,7 +27,6 @@ router.post("/registerUser", (req, res) => {
   qrcode.toDataURL(secret.otpauth_url, function (err, data) {
     qr = data;
   });
-
   user.save((err, newUser) => {
     if (err) res.status(409).send(err)
     else {
@@ -38,14 +37,12 @@ router.post("/registerUser", (req, res) => {
 })
 
 
-
-
 router.post("/verifyOtp", (req, res) => {
   var secret;
   var id;
   var verified;
   users.findOne({email: req.body.email},function(err,user){
-    if(err || user ==null){
+    if(err || user ==null) {
       console.log(err)
       res.status(400).send("Bad Request")
     }
@@ -54,34 +51,62 @@ router.post("/verifyOtp", (req, res) => {
     secret = user.secret.ascii;
     console.log(secret);
     console.log("hello");
-
     verified = speakeasy.totp.verify({
       secret: user.secret.ascii,
       encoding: "ascii",
       token: req.body.otp,
       window: 0
     })
-
-      console.log(verified);
-      if (verified == true) {
-  
-        var token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 86400 });
-        res.send({
-          "valid": verified,
-          "token": token
-        })
-      }
-      else {
-        res.send({
-          "valid": verified
-        })
-      }
-   
+    console.log(verified);
+    if (verified == true) {
+      var token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 86400 });
+      res.send({
+        "valid": verified,
+        "token": token
+      })
+    }
+    else {
+      res.send({
+        "valid": verified
+      })
+    }
   }
+  })
+})
 
+
+router.post("/validateUser", (req,res) => {
+  var query = {
+    email: req.body.email
+  }
+  users.findOneAndUpdate(query, {$set: {validated : true}}, {new:true}, function(err,user){
+    if(err){
+      res.status(500).send("DB error")
+    }
+    else{
+      res.send(user)
+    }
+  })
+})
+
+
+router.post("/userLogin", (req,res) => {
+  users.findOne({ email: req.body.email }, (err, user) => {
+    if (err) res.status(500).send("There has been an error")
+    else if (user == null) res.status(404).send("No account with given credentials exists")
+    else {
+      if (bcrypt.compareSync(req.body.password, user.password)) {
+        //var token = jwt.sign({ id: seller._id }, config.secret, { expiresIn: 86400 });
+        res.send({ "validated": user.validated, "auth": true })
+      }
+      else res.status(403).send("Auth Error")
+    }
   })
 
 })
+
+
+
 
 
 
