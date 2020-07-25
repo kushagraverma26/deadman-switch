@@ -41,56 +41,59 @@ router.post("/verifyOtp", (req, res) => {
   var secret;
   var id;
   var verified;
-  users.findOne({email: req.body.email},function(err,user){
-    if(err || user ==null) {
+  users.findOne({ email: req.body.email }, function (err, user) {
+    if (err) {
       console.log(err)
       res.status(400).send("Bad Request")
     }
-    else {
-    id = user._id;
-    secret = user.secret.ascii;
-    console.log(secret);
-    console.log("hello");
-    verified = speakeasy.totp.verify({
-      secret: user.secret.ascii,
-      encoding: "ascii",
-      token: req.body.otp,
-      window: 0
-    })
-    console.log(verified);
-    if (verified == true) {
-      var token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 86400 });
-      res.send({
-        "valid": verified,
-        "token": token
-      })
+    else if (user == null) {
+      res.status(404).send("No account with given credentials exists");
     }
     else {
-      res.send({
-        "valid": verified
+      id = user._id;
+      secret = user.secret.ascii;
+      console.log(secret);
+      console.log("hello");
+      verified = speakeasy.totp.verify({
+        secret: user.secret.ascii,
+        encoding: "ascii",
+        token: req.body.otp,
+        window: 0
       })
+      console.log(verified);
+      if (verified == true) {
+        var token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 86400 });
+        res.send({
+          "valid": verified,
+          "token": token
+        })
+      }
+      else {
+        res.send({
+          "valid": verified
+        })
+      }
     }
-  }
   })
 })
 
 
-router.post("/validateUser", (req,res) => {
+router.post("/validateUser", (req, res) => {
   var query = {
     email: req.body.email
   }
-  users.findOneAndUpdate(query, {$set: {validated : true}}, {new:true}, function(err,user){
-    if(err){
+  users.findOneAndUpdate(query, { $set: { validated: true } }, { new: true }, function (err, user) {
+    if (err) {
       res.status(500).send("DB error")
     }
-    else{
+    else {
       res.send(user)
     }
   })
 })
 
 
-router.post("/userLogin", (req,res) => {
+router.post("/userLogin", (req, res) => {
   users.findOne({ email: req.body.email }, (err, user) => {
     if (err) res.status(500).send("There has been an error")
     else if (user == null) res.status(404).send("No account with given credentials exists")

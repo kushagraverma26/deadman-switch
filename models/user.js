@@ -10,7 +10,7 @@ var user = new Schema({
     password: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    
+
     phone: {
         type: Number, required: true
     },
@@ -22,11 +22,11 @@ var user = new Schema({
         pincode: { type: Number, required: true }
 
     },
-    secret:{type: Object, required:true},
-    validated: {type:Boolean, default: false},
+    secret: { type: Object, required: true },
+    validated: { type: Boolean, default: false },
 
     createdDate: { type: Date, default: Date.now }
 
 })
 
-module.exports = mongoose.model('Users',user)
+module.exports = mongoose.model('Users', user)

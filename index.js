@@ -16,27 +16,27 @@ var authRoutes = require('./routes/auth');
 
 
 
-app.use((req,res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-    next();
-  });
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+  next();
+});
 
 
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
   res.send("<h1>Deadman Home</h1>")
 })
 
 
-app.use("/auth",authRoutes);
+app.use("/auth", authRoutes);
 
 
 
-mongoose.connect("", {useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("", { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', function () {
   // we're connected!
   console.log("DB connection successful")
   app.listen(port, () => console.log(` app listening on port ${port}!`))
