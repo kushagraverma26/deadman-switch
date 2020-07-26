@@ -4,6 +4,9 @@ var users = require('../models/user');
 var files = require('../models/file');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
+const ipfsClient = require('ipfs-http-client');
+
+const ipfs = new ipfsClient({ host: '192.168.29.132', port: '5001', protocol: 'http' });
 
 var router = express.Router()
 
@@ -14,7 +17,7 @@ router.post('/upload', userValidate, (req, res) => {
     const fileExtention = req.body.fileExtention;
     const createdBy = req.body.userId;
 
-    const filePath = './files/' + fileName;
+    const filePath = './files/' + fileName + fileExtention;
 
     files.find({ "name": fileName }, (err, result) => {
         // console.log(typeof(result));
@@ -30,16 +33,20 @@ router.post('/upload', userValidate, (req, res) => {
 
         }
         else {
-            fs.writeFile('./files/' + fileName + fileExtention, fileData, function (err) {
+            fs.writeFile('./files/' + fileName + fileExtention, fileData, async function (err) {
                 if (err) {
                     console.log("Error while creating the file");
                     return res.status(500).send(err);
                 }
                 else {
+                    console.log("helo");
+                    const fileHash = await addFile(fileName, filePath);
+                    console.log(fileHash.toString());
                     var file = new files({
                         name: fileName,
                         extention: fileExtention,
                         createdBy: createdBy,
+                        ipfsHash: fileHash.toString()
                     })
                     file.save((err, newFile) => {
                         if (err) res.status(409).send(err)
@@ -47,14 +54,27 @@ router.post('/upload', userValidate, (req, res) => {
                             res.send(newFile)
                         }
                     })
+                    fs.unlink(filePath, (err) => {
+                        if (err) {
+                            console.log("Error while removing file from server");
+                            console.log(err);
+                        }
+                    })
                 }
             });
-
         }
     })
-
-
 })
+
+const addFile = async (fileName, filePath) => {
+    const file = fs.readFileSync(filePath);
+    const fileAdded = await ipfs.add({ path: fileName, content: file });
+    console.log("hii");
+    console.log(fileAdded);
+    const fileHash = fileAdded.cid;
+
+    return fileHash;
+}
 
 
 //Token Validator

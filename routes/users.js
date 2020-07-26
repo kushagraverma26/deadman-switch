@@ -43,12 +43,12 @@ router.post("/generateKeys", userValidate, (req, res) => {
         req.query['_id'] = id
         users.findByIdAndUpdate(req.query, { $set: { publicKey: req.body.publicKey } }, { new: true }, function (err, user) {
             if (err) {
-              res.status(500).send("DB error")
+                res.status(500).send("DB error")
             }
             else {
-              res.send({"id": user._id, "firstName": user.firstName, "email": user.email, "publicKey": user.publicKey})
+                res.send({ "id": user._id, "firstName": user.firstName, "email": user.email, "publicKey": user.publicKey })
             }
-          })
+        })
 
 
     }).catch((err) => { res.status(403).send("Token Error") })
