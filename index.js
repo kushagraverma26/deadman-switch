@@ -1,6 +1,8 @@
 const express = require('express');
 var mongoose = require('mongoose');
 bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
+
 const app = express();
 const port = 3000;
 
@@ -10,9 +12,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
-
+app.use(fileUpload());
 
 var authRoutes = require('./routes/auth');
+var fileRoutes = require('./routes/files');
+var userRoutes = require('./routes/users');
 
 
 
@@ -30,6 +34,8 @@ app.get("/", (req, res) => {
 
 
 app.use("/auth", authRoutes);
+app.use("/files", fileRoutes);
+app.use("/users",userRoutes);
 
 
 

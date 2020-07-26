@@ -23,6 +23,7 @@ var user = new Schema({
 
     },
     secret: { type: Object, required: true },
+    publicKey: { type: String, default: "" },
     validated: { type: Boolean, default: false },
 
     createdDate: { type: Date, default: Date.now }
