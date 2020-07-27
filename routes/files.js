@@ -11,13 +11,33 @@ const ipfs = new ipfsClient({ host: '192.168.29.132', port: '5001', protocol: 'h
 var router = express.Router()
 
 
+
+//Get files for the current user API
+//For React App
+router.get("/myFiles", userValidate, (req, res) => {
+    tokenToId(req.get("token")).then((id) => {
+        req.query['createdBy'] = id
+        files.find(req.query).then((files) => {
+            res.send(files)
+        }).catch((err) => {
+            res.status(400).send("Bad Request")
+        })
+    }).catch((err) => {
+        res.status(400).send("Bad Request")
+    })
+})
+
+
 router.post('/upload', userValidate, (req, res) => {
+    console.log("Trying to upload file");
+
     const fileName = req.body.fileName;
     const fileData = req.body.fileData;
     const fileExtention = req.body.fileExtention;
     const createdBy = req.body.userId;
 
     const filePath = './files/' + fileName + fileExtention;
+    console.log(filePath);
 
     files.find({ "name": fileName }, (err, result) => {
         // console.log(typeof(result));
@@ -49,7 +69,10 @@ router.post('/upload', userValidate, (req, res) => {
                         ipfsHash: fileHash.toString()
                     })
                     file.save((err, newFile) => {
-                        if (err) res.status(409).send(err)
+                        if (err) {
+                            console.log("Something went wrong while adding the file info on the database");
+                            res.status(409).send(err)
+                        }
                         else {
                             res.send(newFile)
                         }

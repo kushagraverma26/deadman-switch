@@ -22,9 +22,10 @@ router.get("/myProfile", userValidate, (req, res) => {
 
 //Get specific infornamtion
 router.get("/myInfo", userValidate, (req, res) => {
+    console.log("incomig info req");
     tokenToId(req.get("token")).then((id) => {
-        req.query['_id'] = id
-        users.find(req.query, req.body).then((user) => {
+        var query = { '_id': id };
+        users.find(query, req.query).then((user) => {
             res.send(user)
         }).catch((err) => {
             res.status(400).send("Bad Request")

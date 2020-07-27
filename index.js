@@ -2,6 +2,7 @@ const express = require('express');
 var mongoose = require('mongoose');
 bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(fileUpload());
+app.use(cors());
 
 var authRoutes = require('./routes/auth');
 var fileRoutes = require('./routes/files');
@@ -35,11 +37,11 @@ app.get("/", (req, res) => {
 
 app.use("/auth", authRoutes);
 app.use("/files", fileRoutes);
-app.use("/users",userRoutes);
+app.use("/users", userRoutes);
 
 
 
-mongoose.connect("mongodb+srv://kushagra:kushagra@deadman.gmin2.mongodb.net/<test>?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("", { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {

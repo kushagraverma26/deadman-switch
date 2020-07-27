@@ -64,6 +64,8 @@ router.post("/verifyOtp", (req, res) => {
       if (verified == true) {
         var token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 86400 });
         res.send({
+          "id": user._id,
+          "firstName": user.firstName,
           "valid": verified,
           "token": token
         })
