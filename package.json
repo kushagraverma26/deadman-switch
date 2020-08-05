@@ -11,7 +11,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "express-fileupload": "^1.1.7-alpha.4",
+    "express-fileupload": "^1.1.9",
     "ipfs-http-client": "^45.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.23",
