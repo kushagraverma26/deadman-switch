@@ -40,6 +40,7 @@ router.get("/myInfo", userValidate, (req, res) => {
 
 // Store public key
 router.post("/generateKeys", userValidate, (req, res) => {
+    console.log("storing keys");
     tokenToId(req.get("token")).then((id) => {
         req.query['_id'] = id
         users.findByIdAndUpdate(req.query, { $set: { publicKey: req.body.publicKey } }, { new: true }, function (err, user) {
@@ -50,8 +51,6 @@ router.post("/generateKeys", userValidate, (req, res) => {
                 res.send({ "id": user._id, "firstName": user.firstName, "email": user.email, "publicKey": user.publicKey })
             }
         })
-
-
     }).catch((err) => { res.status(403).send("Token Error") })
 
 

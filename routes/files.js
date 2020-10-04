@@ -5,6 +5,7 @@ var files = require('../models/file');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
 const ipfsClient = require('ipfs-http-client');
+const CID = require('cids')
 
 const ipfs = new ipfsClient({ host: '192.168.29.132', port: '5001', protocol: 'http' });
 
@@ -26,6 +27,7 @@ router.get("/myFiles", userValidate, (req, res) => {
         res.status(400).send("Bad Request")
     })
 })
+
 
 
 router.post('/upload', userValidate, (req, res) => {
@@ -98,6 +100,53 @@ const addFile = async (fileName, filePath) => {
 
     return fileHash;
 }
+
+
+router.get("/getFile", userValidate, async  (req, res) => {
+    console.log("FGDSDFVCS");
+    const ci = new CID(req.query['cid']);
+    const f = readFile(ci)
+    try{
+    f.then(async function(result){
+        console.log(result);
+        try{
+        for await (const item of result){
+
+            console.log(item.toString());
+
+        }
+    }catch(err)  {
+        console.log(err);
+
+}
+
+
+    })
+    } catch(err)  {
+            console.log(err);
+    
+    }
+    
+})
+
+const readFile = async (cid) => {
+    try{
+    const f = await ipfs.cat(cid);
+    console.log(f);
+        return f;
+    } catch(err) {
+        console.log(err);
+    }
+    
+}
+
+// function updateName(name) {
+//     console.log(name);
+//        ans = name+"(1)"
+
+// return ans
+// }
+// console.log(updateName("BDB(1)"))
 
 
 //Token Validator
