@@ -97,47 +97,45 @@ const addFile = async (fileName, filePath) => {
     console.log("hii");
     console.log(fileAdded);
     const fileHash = fileAdded.cid;
-
     return fileHash;
 }
 
 
-router.get("/getFile", userValidate, async  (req, res) => {
-    console.log("FGDSDFVCS");
+router.get("/getFile", userValidate, async (req, res) => {
+    // console.log("FGDSDFVCS");
     const ci = new CID(req.query['cid']);
     const f = readFile(ci)
-    try{
-    f.then(async function(result){
-        console.log(result);
-        try{
-        for await (const item of result){
-
-            console.log(item.toString());
-
-        }
-    }catch(err)  {
+    try {
+        f.then(async function (result) {
+            console.log(result);
+            try {
+                for await (const item of result) {
+                    console.log(item.toString('utf-8'));
+                    res.send({ "fileData": item.toString('utf-8'), })
+                }
+            } catch (err) {
+                console.log(err);
+                return res.status(500).send(err);
+            }
+        })
+    } catch (err) {
         console.log(err);
+        return res.status(500).send(err);
 
-}
-
-
-    })
-    } catch(err)  {
-            console.log(err);
-    
     }
-    
 })
 
+
 const readFile = async (cid) => {
-    try{
-    const f = await ipfs.cat(cid);
-    console.log(f);
+    try {
+        const f = await ipfs.cat(cid);
+        console.log(f);
         return f;
-    } catch(err) {
+    } catch (err) {
         console.log(err);
+        return res.status(500).send(err);
+
     }
-    
 }
 
 // function updateName(name) {
