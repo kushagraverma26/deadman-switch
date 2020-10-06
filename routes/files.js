@@ -18,7 +18,12 @@ var router = express.Router()
 router.get("/myFiles", userValidate, (req, res) => {
     tokenToId(req.get("token")).then((id) => {
         req.query['createdBy'] = id
+        console.log("gfd");
         files.find(req.query).then((files) => {
+            console.log("gfd");
+            console.log(files);
+
+
             res.send(files)
         }).catch((err) => {
             res.status(400).send("Bad Request")
@@ -32,16 +37,16 @@ router.get("/myFiles", userValidate, (req, res) => {
 
 router.post('/upload', userValidate, (req, res) => {
     console.log("Trying to upload file");
-
-    const fileName = req.body.fileName;
+    var fileName = req.body.fileName;
     const fileData = req.body.fileData;
     const fileExtention = req.body.fileExtention;
     const createdBy = req.body.userId;
+    
 
-    const filePath = './files/' + fileName + fileExtention;
-    console.log(filePath);
 
-    files.find({ "name": fileName }, (err, result) => {
+
+
+    files.find({"createdBy": createdBy, "name": fileName }, (err, result) => {
         // console.log(typeof(result));
         // console.log(!result.length);
         if (err) {
@@ -50,44 +55,48 @@ router.post('/upload', userValidate, (req, res) => {
         }
         else if (result.length) {
             // console.log(result);
-            console.log("File already exists");
-            return res.status(500).send("File already exists");
+            console.log("File already exists, Renaming File");
+            fileName = updateName(fileName);
+            console.log(fileName);
+            // return res.status(500).send("File already exists");
 
         }
-        else {
-            fs.writeFile('./files/' + fileName + fileExtention, fileData, async function (err) {
-                if (err) {
-                    console.log("Error while creating the file");
-                    return res.status(500).send(err);
-                }
-                else {
-                    console.log("helo");
-                    const fileHash = await addFile(fileName, filePath);
-                    console.log(fileHash.toString());
-                    var file = new files({
-                        name: fileName,
-                        extention: fileExtention,
-                        createdBy: createdBy,
-                        ipfsHash: fileHash.toString()
-                    })
-                    file.save((err, newFile) => {
-                        if (err) {
-                            console.log("Something went wrong while adding the file info on the database");
-                            res.status(409).send(err)
-                        }
-                        else {
-                            res.send(newFile)
-                        }
-                    })
-                    fs.unlink(filePath, (err) => {
-                        if (err) {
-                            console.log("Error while removing file from server");
-                            console.log(err);
-                        }
-                    })
-                }
-            });
-        }
+        const filePath = './files/' + fileName + fileExtention;
+        console.log(filePath);  
+        fs.writeFile('./files/' + fileName + fileExtention, fileData, async function (err) {
+            if (err) {
+                console.log("Error while creating the file");
+                return res.status(500).send(err);
+            }
+            else {
+                console.log("helo");
+                const fileHash = await addFile(fileName, filePath);
+                console.log(fileHash.toString());
+                var file = new files({
+                    name: fileName,
+                    extention: fileExtention,
+                    createdBy: createdBy,
+                    ipfsHash: fileHash.toString()
+                })
+                file.save((err, newFile) => {
+                    if (err) {
+                        console.log(err);
+                        console.log("Something went wrong while adding the file info on the database");
+                        res.status(409).send(err)
+                    }
+                    else {
+                        res.send(newFile)
+                    }
+                })
+                fs.unlink(filePath, (err) => {
+                    if (err) {
+                        console.log("Error while removing file from server");
+                        console.log(err);
+                    }
+                })
+            }
+        });
+    
     })
 })
 
@@ -138,13 +147,12 @@ const readFile = async (cid) => {
     }
 }
 
-// function updateName(name) {
-//     console.log(name);
-//        ans = name+"(1)"
+function updateName(name) {
+    
+    var ans = name+"(1)"
 
-// return ans
-// }
-// console.log(updateName("BDB(1)"))
+    return ans
+}
 
 
 //Token Validator
