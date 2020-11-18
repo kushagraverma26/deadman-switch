@@ -52,8 +52,6 @@ router.post("/verifyOtp", (req, res) => {
     else {
       id = user._id;
       secret = user.secret.ascii;
-      console.log(secret);
-      console.log("hello");
       verified = speakeasy.totp.verify({
         secret: user.secret.ascii,
         encoding: "ascii",

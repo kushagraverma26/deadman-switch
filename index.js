@@ -8,7 +8,6 @@ const app = express();
 const port = 3000;
 
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
@@ -19,6 +18,7 @@ app.use(cors());
 var authRoutes = require('./routes/auth');
 var fileRoutes = require('./routes/files');
 var userRoutes = require('./routes/users');
+var transactionRoutes = require('./routes/transactions');
 
 
 
@@ -38,6 +38,7 @@ app.get("/", (req, res) => {
 app.use("/auth", authRoutes);
 app.use("/files", fileRoutes);
 app.use("/users", userRoutes);
+app.use("/transactions", transactionRoutes);
 
 
 

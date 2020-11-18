@@ -36,8 +36,6 @@ router.get("/myInfo", userValidate, (req, res) => {
 })
 
 
-
-
 // Store public key
 router.post("/generateKeys", userValidate, (req, res) => {
     console.log("storing keys");
