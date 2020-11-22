@@ -1,6 +1,8 @@
 const express = require('express');
 var mongoose = require('mongoose');
 bodyParser = require('body-parser');
+var script = require('./script');
+
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
@@ -42,7 +44,7 @@ app.use("/transactions", transactionRoutes);
 
 
 
-mongoose.connect("", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://kushagra:kushagra@deadman.gmin2.mongodb.net/<test>?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {

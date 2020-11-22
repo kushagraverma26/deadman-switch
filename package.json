@@ -16,6 +16,7 @@
     "ipfs-http-client": "^45.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.23",
+    "node-cron": "^2.0.3",
     "nodemon": "^2.0.4",
     "qrcode": "^1.4.4",
     "speakeasy": "^2.0.0"

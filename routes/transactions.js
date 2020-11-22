@@ -38,8 +38,8 @@ router.post('/setTransaction', userValidate, (req, res) => {
         ipfsHash: req.body.ipfsHash,
         releaseDate: req.body.releaseDate,
         createdBy: req.body.userId,
+        createdFor: req.body.createdFor
     });
-
     transaction.save((err, newTransaction) => {
         if (err) res.status(409).send(err)
         else {
