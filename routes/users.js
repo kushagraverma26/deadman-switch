@@ -35,6 +35,17 @@ router.get("/myInfo", userValidate, (req, res) => {
     })
 })
 
+// Get other users Public key
+router.get("/getPubKey", userValidate, (req, res) => {
+    var query = {email: req.body.email};
+        users.find(query, req.query).then((user) => {
+            res.send({email: user[0].email, publicKey: user[0].publicKey, id: user[0]._id})
+        }).catch((err) => {
+            res.status(400).send("Bad Request")
+        })
+
+})
+
 
 // Store public key
 router.post("/generateKeys", userValidate, (req, res) => {
