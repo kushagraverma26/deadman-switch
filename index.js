@@ -21,6 +21,7 @@ var authRoutes = require('./routes/auth');
 var fileRoutes = require('./routes/files');
 var userRoutes = require('./routes/users');
 var transactionRoutes = require('./routes/transactions');
+var proofRoutes = require('./routes/proofs');
 
 
 
@@ -41,6 +42,7 @@ app.use("/auth", authRoutes);
 app.use("/files", fileRoutes);
 app.use("/users", userRoutes);
 app.use("/transactions", transactionRoutes);
+app.use("/proofs", proofRoutes);
 
 
 

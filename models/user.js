@@ -20,7 +20,6 @@ var user = new Schema({
         city: { type: String, required: true },
         state: { type: String, required: true },
         pincode: { type: Number, required: true }
-
     },
     secret: { type: Object, required: true },
     publicKey: { type: String, default: "" },
