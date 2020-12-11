@@ -2,12 +2,14 @@ const Web3 = require('web3');
 const cron = require("node-cron");
 var transactions = require('./models/transaction');
 const MyContract = require('./build/contracts/Data.json');
-
-const address = "0xC5973ffB797C0C0278d7246D430edBEa439E4830";
-const privateKey = "0x2f535774e31e88aa007fab139f21eac1f4739cc80b49287f00f822159615545c";
-const url = "http://localhost:8545";
-
+var blockchain = require('./config/blockchain');
 const Provider = require("@truffle/hdwallet-provider");
+
+
+const address = blockchain.address;
+const privateKey = blockchain.privateKey;
+const url = blockchain.url;
+
 
 const releaseData = async(fromUser, toUser, ipfsHash, message) =>{
     const provider = new Provider(privateKey, url);
@@ -27,7 +29,7 @@ const releaseData = async(fromUser, toUser, ipfsHash, message) =>{
 
 
 // const cronJob = 
-cron.schedule("0 0 * * *", async function () {
+cron.schedule("* * * * *", async function () {
     console.log("running a task every midnight");
     var allTransactions = await transactions.find({completed: false});
     console.log(allTransactions);

@@ -10,6 +10,7 @@ contract Life {
         string userId;
         string date;
         string message;
+
     }
 
     Proof public lifeProof;

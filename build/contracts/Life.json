@@ -1,0 +1,1407 @@
+{
+  "contractName": "Life",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "lifeProof",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "userId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "date",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_fromUser",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_date",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_message",
+          "type": "string"
+        }
+      ],
+      "name": "releaseLifeProof",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getLifeProof",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "userId",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "date",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "message",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct Life.Proof",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":true,\"inputs\":[],\"name\":\"getLifeProof\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"userId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"internalType\":\"struct Life.Proof\",\"name\":\"\",\"type\":\"tuple\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"lifeProof\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"userId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"string\",\"name\":\"_fromUser\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_date\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_message\",\"type\":\"string\"}],\"name\":\"releaseLifeProof\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/kushagra/Documents/deadman/contracts/Life.sol\":\"Life\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/kushagra/Documents/deadman/contracts/Life.sol\":{\"keccak256\":\"0xf73e7ac340b74801f6e49669ae368d8f4aea54527a689baa7259efcd9ae70d1f\",\"urls\":[\"bzz-raw://ab238d60b1babcff608af38724e83722a1946a70f71a6184d40b9755498340c7\",\"dweb:/ipfs/QmetxwiMao1a2ibX22jPNNVqK8EjQXHqFsif875qyJYMdt\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405180606001604052806040518060400160405280600d81526020017f445661756c74496e697469616c0000000000000000000000000000000000000081525081526020016040518060400160405280600d81526020017f445661756c74496e697469616c0000000000000000000000000000000000000081525081526020016040518060400160405280600d81526020017f445661756c74496e697469616c000000000000000000000000000000000000008152508152506000808201518160000190805190602001906100e892919061012b565b50602082015181600101908051906020019061010592919061012b565b50604082015181600201908051906020019061012292919061012b565b509050506101d0565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061016c57805160ff191683800117855561019a565b8280016001018555821561019a579182015b8281111561019957825182559160200191906001019061017e565b5b5090506101a791906101ab565b5090565b6101cd91905b808211156101c95760008160009055506001016101b1565b5090565b90565b610906806101df6000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80630127a05d14610046578063b4dd329b14610064578063bc2ba45414610080575b600080fd5b61004e6100a0565b60405161005b91906107c8565b60405180910390f35b61007e60048036036100799190810190610615565b6102a0565b005b61008861031b565b6040516100979392919061077c565b60405180910390f35b6100a86104fb565b6000604051806060016040529081600082018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561014e5780601f106101235761010080835404028352916020019161014e565b820191906000526020600020905b81548152906001019060200180831161013157829003601f168201915b50505050508152602001600182018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156101f05780601f106101c5576101008083540402835291602001916101f0565b820191906000526020600020905b8154815290600101906020018083116101d357829003601f168201915b50505050508152602001600282018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102925780601f1061026757610100808354040283529160200191610292565b820191906000526020600020905b81548152906001019060200180831161027557829003601f168201915b505050505081525050905090565b6040518060600160405280848152602001838152602001828152506000808201518160000190805190602001906102d892919061051c565b5060208201518160010190805190602001906102f592919061051c565b50604082015181600201908051906020019061031292919061051c565b50905050505050565b6000806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103b55780601f1061038a576101008083540402835291602001916103b5565b820191906000526020600020905b81548152906001019060200180831161039857829003601f168201915b505050505090806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104535780601f1061042857610100808354040283529160200191610453565b820191906000526020600020905b81548152906001019060200180831161043657829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104f15780601f106104c6576101008083540402835291602001916104f1565b820191906000526020600020905b8154815290600101906020018083116104d457829003601f168201915b5050505050905083565b60405180606001604052806060815260200160608152602001606081525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061055d57805160ff191683800117855561058b565b8280016001018555821561058b579182015b8281111561058a57825182559160200191906001019061056f565b5b509050610598919061059c565b5090565b6105be91905b808211156105ba5760008160009055506001016105a2565b5090565b90565b600082601f8301126105d257600080fd5b81356105e56105e082610817565b6107ea565b9150808252602083016020830185838301111561060157600080fd5b61060c838284610870565b50505092915050565b60008060006060848603121561062a57600080fd5b600084013567ffffffffffffffff81111561064457600080fd5b610650868287016105c1565b935050602084013567ffffffffffffffff81111561066d57600080fd5b610679868287016105c1565b925050604084013567ffffffffffffffff81111561069657600080fd5b6106a2868287016105c1565b9150509250925092565b60006106b782610843565b6106c1818561084e565b93506106d181856020860161087f565b6106da816108b2565b840191505092915050565b60006106f082610843565b6106fa818561085f565b935061070a81856020860161087f565b610713816108b2565b840191505092915050565b6000606083016000830151848203600086015261073b82826106ac565b9150506020830151848203602086015261075582826106ac565b9150506040830151848203604086015261076f82826106ac565b9150508091505092915050565b6000606082019050818103600083015261079681866106e5565b905081810360208301526107aa81856106e5565b905081810360408301526107be81846106e5565b9050949350505050565b600060208201905081810360008301526107e2818461071e565b905092915050565b6000604051905081810181811067ffffffffffffffff8211171561080d57600080fd5b8060405250919050565b600067ffffffffffffffff82111561082e57600080fd5b601f19601f8301169050602081019050919050565b600081519050919050565b600082825260208201905092915050565b600082825260208201905092915050565b82818337600083830152505050565b60005b8381101561089d578082015181840152602081019050610882565b838111156108ac576000848401525b50505050565b6000601f19601f830116905091905056fea365627a7a72315820c0672c4648b9d8e86c7224ed4bd3462e23bf6dea1610c7ef30e2cc22cada48d86c6578706572696d656e74616cf564736f6c63430005100040",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80630127a05d14610046578063b4dd329b14610064578063bc2ba45414610080575b600080fd5b61004e6100a0565b60405161005b91906107c8565b60405180910390f35b61007e60048036036100799190810190610615565b6102a0565b005b61008861031b565b6040516100979392919061077c565b60405180910390f35b6100a86104fb565b6000604051806060016040529081600082018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561014e5780601f106101235761010080835404028352916020019161014e565b820191906000526020600020905b81548152906001019060200180831161013157829003601f168201915b50505050508152602001600182018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156101f05780601f106101c5576101008083540402835291602001916101f0565b820191906000526020600020905b8154815290600101906020018083116101d357829003601f168201915b50505050508152602001600282018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102925780601f1061026757610100808354040283529160200191610292565b820191906000526020600020905b81548152906001019060200180831161027557829003601f168201915b505050505081525050905090565b6040518060600160405280848152602001838152602001828152506000808201518160000190805190602001906102d892919061051c565b5060208201518160010190805190602001906102f592919061051c565b50604082015181600201908051906020019061031292919061051c565b50905050505050565b6000806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103b55780601f1061038a576101008083540402835291602001916103b5565b820191906000526020600020905b81548152906001019060200180831161039857829003601f168201915b505050505090806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104535780601f1061042857610100808354040283529160200191610453565b820191906000526020600020905b81548152906001019060200180831161043657829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104f15780601f106104c6576101008083540402835291602001916104f1565b820191906000526020600020905b8154815290600101906020018083116104d457829003601f168201915b5050505050905083565b60405180606001604052806060815260200160608152602001606081525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061055d57805160ff191683800117855561058b565b8280016001018555821561058b579182015b8281111561058a57825182559160200191906001019061056f565b5b509050610598919061059c565b5090565b6105be91905b808211156105ba5760008160009055506001016105a2565b5090565b90565b600082601f8301126105d257600080fd5b81356105e56105e082610817565b6107ea565b9150808252602083016020830185838301111561060157600080fd5b61060c838284610870565b50505092915050565b60008060006060848603121561062a57600080fd5b600084013567ffffffffffffffff81111561064457600080fd5b610650868287016105c1565b935050602084013567ffffffffffffffff81111561066d57600080fd5b610679868287016105c1565b925050604084013567ffffffffffffffff81111561069657600080fd5b6106a2868287016105c1565b9150509250925092565b60006106b782610843565b6106c1818561084e565b93506106d181856020860161087f565b6106da816108b2565b840191505092915050565b60006106f082610843565b6106fa818561085f565b935061070a81856020860161087f565b610713816108b2565b840191505092915050565b6000606083016000830151848203600086015261073b82826106ac565b9150506020830151848203602086015261075582826106ac565b9150506040830151848203604086015261076f82826106ac565b9150508091505092915050565b6000606082019050818103600083015261079681866106e5565b905081810360208301526107aa81856106e5565b905081810360408301526107be81846106e5565b9050949350505050565b600060208201905081810360008301526107e2818461071e565b905092915050565b6000604051905081810181811067ffffffffffffffff8211171561080d57600080fd5b8060405250919050565b600067ffffffffffffffff82111561082e57600080fd5b601f19601f8301169050602081019050919050565b600081519050919050565b600082825260208201905092915050565b600082825260208201905092915050565b82818337600083830152505050565b60005b8381101561089d578082015181840152602081019050610882565b838111156108ac576000848401525b50505050565b6000601f19601f830116905091905056fea365627a7a72315820c0672c4648b9d8e86c7224ed4bd3462e23bf6dea1610c7ef30e2cc22cada48d86c6578706572696d656e74616cf564736f6c63430005100040",
+  "sourceMap": "102:517:1:-;;;247:103;8:9:-1;5:2;;;30:1;27;20:12;5:2;247:103:1;289:54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;277:9;:66;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;102:517;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;",
+  "deployedSourceMap": "102:517:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;102:517:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;525:92;;;:::i;:::-;;;;;;;;;;;;;;;;356:163;;;;;;;;;;;;;;;;:::i;:::-;;218:22;;;:::i;:::-;;;;;;;;;;;;;;;;;;525:92;570:12;;:::i;:::-;601:9;594:16;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;525:92;:::o;356:163::-;478:34;;;;;;;;484:9;478:34;;;;495:5;478:34;;;;503:8;478:34;;;466:9;:46;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;356:163;;;:::o;218:22::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;102:517::-;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;6:442:-1:-;;108:3;101:4;93:6;89:17;85:27;75:2;;126:1;123;116:12;75:2;163:6;150:20;185:65;200:49;242:6;200:49;;;185:65;;;176:74;;270:6;263:5;256:21;306:4;298:6;294:17;339:4;332:5;328:16;374:3;365:6;360:3;356:16;353:25;350:2;;;391:1;388;381:12;350:2;401:41;435:6;430:3;425;401:41;;;68:380;;;;;;;;456:809;;;;624:2;612:9;603:7;599:23;595:32;592:2;;;640:1;637;630:12;592:2;703:1;692:9;688:17;675:31;726:18;718:6;715:30;712:2;;;758:1;755;748:12;712:2;778:63;833:7;824:6;813:9;809:22;778:63;;;768:73;;654:193;906:2;895:9;891:18;878:32;930:18;922:6;919:30;916:2;;;962:1;959;952:12;916:2;982:63;1037:7;1028:6;1017:9;1013:22;982:63;;;972:73;;857:194;1110:2;1099:9;1095:18;1082:32;1134:18;1126:6;1123:30;1120:2;;;1166:1;1163;1156:12;1120:2;1186:63;1241:7;1232:6;1221:9;1217:22;1186:63;;;1176:73;;1061:194;586:679;;;;;;1272:319;;1370:35;1399:5;1370:35;;;1417:61;1471:6;1466:3;1417:61;;;1410:68;;1483:52;1528:6;1523:3;1516:4;1509:5;1505:16;1483:52;;;1556:29;1578:6;1556:29;;;1551:3;1547:39;1540:46;;1350:241;;;;;;1598:339;;1706:35;1735:5;1706:35;;;1753:71;1817:6;1812:3;1753:71;;;1746:78;;1829:52;1874:6;1869:3;1862:4;1855:5;1851:16;1829:52;;;1902:29;1924:6;1902:29;;;1897:3;1893:39;1886:46;;1686:251;;;;;;1989:862;;2132:4;2127:3;2123:14;2217:4;2210:5;2206:16;2200:23;2269:3;2263:4;2259:14;2252:4;2247:3;2243:14;2236:38;2289:69;2353:4;2339:12;2289:69;;;2281:77;;2152:218;2443:4;2436:5;2432:16;2426:23;2495:3;2489:4;2485:14;2478:4;2473:3;2469:14;2462:38;2515:69;2579:4;2565:12;2515:69;;;2507:77;;2380:216;2672:4;2665:5;2661:16;2655:23;2724:3;2718:4;2714:14;2707:4;2702:3;2698:14;2691:38;2744:69;2808:4;2794:12;2744:69;;;2736:77;;2606:219;2842:4;2835:11;;2105:746;;;;;;2858:675;;3080:2;3069:9;3065:18;3057:26;;3130:9;3124:4;3120:20;3116:1;3105:9;3101:17;3094:47;3155:74;3224:4;3215:6;3155:74;;;3147:82;;3277:9;3271:4;3267:20;3262:2;3251:9;3247:18;3240:48;3302:74;3371:4;3362:6;3302:74;;;3294:82;;3424:9;3418:4;3414:20;3409:2;3398:9;3394:18;3387:48;3449:74;3518:4;3509:6;3449:74;;;3441:82;;3051:482;;;;;;;3540:345;;3700:2;3689:9;3685:18;3677:26;;3750:9;3744:4;3740:20;3736:1;3725:9;3721:17;3714:47;3775:100;3870:4;3861:6;3775:100;;;3767:108;;3671:214;;;;;3892:256;;3954:2;3948:9;3938:19;;3992:4;3984:6;3980:17;4091:6;4079:10;4076:22;4055:18;4043:10;4040:34;4037:62;4034:2;;;4112:1;4109;4102:12;4034:2;4132:10;4128:2;4121:22;3932:216;;;;;4155:322;;4299:18;4291:6;4288:30;4285:2;;;4331:1;4328;4321:12;4285:2;4398:4;4394:9;4387:4;4379:6;4375:17;4371:33;4363:41;;4462:4;4456;4452:15;4444:23;;4222:255;;;;4484:118;;4574:5;4568:12;4558:22;;4539:63;;;;4610:153;;4715:6;4710:3;4703:19;4752:4;4747:3;4743:14;4728:29;;4696:67;;;;;4772:163;;4887:6;4882:3;4875:19;4924:4;4919:3;4915:14;4900:29;;4868:67;;;;;4944:145;5025:6;5020:3;5015;5002:30;5081:1;5072:6;5067:3;5063:16;5056:27;4995:94;;;;5098:268;5163:1;5170:101;5184:6;5181:1;5178:13;5170:101;;;5260:1;5255:3;5251:11;5245:18;5241:1;5236:3;5232:11;5225:39;5206:2;5203:1;5199:10;5194:15;;5170:101;;;5286:6;5283:1;5280:13;5277:2;;;5351:1;5342:6;5337:3;5333:16;5326:27;5277:2;5147:219;;;;;5374:97;;5462:2;5458:7;5453:2;5446:5;5442:14;5438:28;5428:38;;5422:49;;;",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma solidity >=0.4.22 <0.8.0;\npragma experimental ABIEncoderV2;\n\n\ncontract Life {\n\n    struct Proof {\n        string userId;\n        string date;\n        string message;\n\n    }\n\n    Proof public lifeProof;\n\n    constructor() public{\n        lifeProof = Proof(\"DVaultInitial\",\"DVaultInitial\",\"DVaultInitial\");\n    }\n\n    function releaseLifeProof(string memory _fromUser,string memory _date,string memory _message) public{\n        lifeProof = Proof(_fromUser, _date,  _message);\n    }\n\n    function getLifeProof() public view returns (Proof memory) {\n        return lifeProof;\n    }\n}",
+  "sourcePath": "/home/kushagra/Documents/deadman/contracts/Life.sol",
+  "ast": {
+    "absolutePath": "/home/kushagra/Documents/deadman/contracts/Life.sol",
+    "exportedSymbols": {
+      "Life": [
+        107
+      ]
+    },
+    "id": 108,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:32:1"
+      },
+      {
+        "id": 59,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "66:33:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 107,
+        "linearizedBaseContracts": [
+          107
+        ],
+        "name": "Life",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Life.Proof",
+            "id": 66,
+            "members": [
+              {
+                "constant": false,
+                "id": 61,
+                "name": "userId",
+                "nodeType": "VariableDeclaration",
+                "scope": 66,
+                "src": "146:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 60,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "146:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 63,
+                "name": "date",
+                "nodeType": "VariableDeclaration",
+                "scope": 66,
+                "src": "169:11:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 62,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "169:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 65,
+                "name": "message",
+                "nodeType": "VariableDeclaration",
+                "scope": 66,
+                "src": "190:14:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 64,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "190:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Proof",
+            "nodeType": "StructDefinition",
+            "scope": 107,
+            "src": "123:89:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 68,
+            "name": "lifeProof",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "218:22:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_Proof_$66_storage",
+              "typeString": "struct Life.Proof"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 67,
+              "name": "Proof",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 66,
+              "src": "218:5:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Proof_$66_storage_ptr",
+                "typeString": "struct Life.Proof"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 79,
+              "nodeType": "Block",
+              "src": "267:83:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 77,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 71,
+                      "name": "lifeProof",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 68,
+                      "src": "277:9:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Proof_$66_storage",
+                        "typeString": "struct Life.Proof storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "hexValue": "445661756c74496e697469616c",
+                          "id": 73,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "295:15:1",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          },
+                          "value": "DVaultInitial"
+                        },
+                        {
+                          "argumentTypes": null,
+                          "hexValue": "445661756c74496e697469616c",
+                          "id": 74,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "311:15:1",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          },
+                          "value": "DVaultInitial"
+                        },
+                        {
+                          "argumentTypes": null,
+                          "hexValue": "445661756c74496e697469616c",
+                          "id": 75,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "327:15:1",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          },
+                          "value": "DVaultInitial"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          },
+                          {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          },
+                          {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          }
+                        ],
+                        "id": 72,
+                        "name": "Proof",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 66,
+                        "src": "289:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Proof_$66_storage_ptr_$",
+                          "typeString": "type(struct Life.Proof storage pointer)"
+                        }
+                      },
+                      "id": 76,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "289:54:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Proof_$66_memory",
+                        "typeString": "struct Life.Proof memory"
+                      }
+                    },
+                    "src": "277:66:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Proof_$66_storage",
+                      "typeString": "struct Life.Proof storage ref"
+                    }
+                  },
+                  "id": 78,
+                  "nodeType": "ExpressionStatement",
+                  "src": "277:66:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 80,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 69,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "258:2:1"
+            },
+            "returnParameters": {
+              "id": 70,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "267:0:1"
+            },
+            "scope": 107,
+            "src": "247:103:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 97,
+              "nodeType": "Block",
+              "src": "456:63:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 95,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 89,
+                      "name": "lifeProof",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 68,
+                      "src": "466:9:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Proof_$66_storage",
+                        "typeString": "struct Life.Proof storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 91,
+                          "name": "_fromUser",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 82,
+                          "src": "484:9:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 92,
+                          "name": "_date",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 84,
+                          "src": "495:5:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 93,
+                          "name": "_message",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 86,
+                          "src": "503:8:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        ],
+                        "id": 90,
+                        "name": "Proof",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 66,
+                        "src": "478:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Proof_$66_storage_ptr_$",
+                          "typeString": "type(struct Life.Proof storage pointer)"
+                        }
+                      },
+                      "id": 94,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "478:34:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Proof_$66_memory",
+                        "typeString": "struct Life.Proof memory"
+                      }
+                    },
+                    "src": "466:46:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Proof_$66_storage",
+                      "typeString": "struct Life.Proof storage ref"
+                    }
+                  },
+                  "id": 96,
+                  "nodeType": "ExpressionStatement",
+                  "src": "466:46:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 98,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "releaseLifeProof",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 87,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 82,
+                  "name": "_fromUser",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 98,
+                  "src": "382:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 81,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "382:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 84,
+                  "name": "_date",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 98,
+                  "src": "406:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 83,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "406:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 86,
+                  "name": "_message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 98,
+                  "src": "426:22:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 85,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "426:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "381:68:1"
+            },
+            "returnParameters": {
+              "id": 88,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "456:0:1"
+            },
+            "scope": 107,
+            "src": "356:163:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 105,
+              "nodeType": "Block",
+              "src": "584:33:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 103,
+                    "name": "lifeProof",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 68,
+                    "src": "601:9:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Proof_$66_storage",
+                      "typeString": "struct Life.Proof storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 102,
+                  "id": 104,
+                  "nodeType": "Return",
+                  "src": "594:16:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 106,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getLifeProof",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 99,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "546:2:1"
+            },
+            "returnParameters": {
+              "id": 102,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 101,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 106,
+                  "src": "570:12:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Proof_$66_memory_ptr",
+                    "typeString": "struct Life.Proof"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 100,
+                    "name": "Proof",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 66,
+                    "src": "570:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Proof_$66_storage_ptr",
+                      "typeString": "struct Life.Proof"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "569:14:1"
+            },
+            "scope": 107,
+            "src": "525:92:1",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 108,
+        "src": "102:517:1"
+      }
+    ],
+    "src": "33:586:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/kushagra/Documents/deadman/contracts/Life.sol",
+    "exportedSymbols": {
+      "Life": [
+        107
+      ]
+    },
+    "id": 108,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:32:1"
+      },
+      {
+        "id": 59,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "66:33:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 107,
+        "linearizedBaseContracts": [
+          107
+        ],
+        "name": "Life",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Life.Proof",
+            "id": 66,
+            "members": [
+              {
+                "constant": false,
+                "id": 61,
+                "name": "userId",
+                "nodeType": "VariableDeclaration",
+                "scope": 66,
+                "src": "146:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 60,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "146:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 63,
+                "name": "date",
+                "nodeType": "VariableDeclaration",
+                "scope": 66,
+                "src": "169:11:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 62,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "169:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 65,
+                "name": "message",
+                "nodeType": "VariableDeclaration",
+                "scope": 66,
+                "src": "190:14:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 64,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "190:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Proof",
+            "nodeType": "StructDefinition",
+            "scope": 107,
+            "src": "123:89:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 68,
+            "name": "lifeProof",
+            "nodeType": "VariableDeclaration",
+            "scope": 107,
+            "src": "218:22:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_struct$_Proof_$66_storage",
+              "typeString": "struct Life.Proof"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 67,
+              "name": "Proof",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 66,
+              "src": "218:5:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Proof_$66_storage_ptr",
+                "typeString": "struct Life.Proof"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 79,
+              "nodeType": "Block",
+              "src": "267:83:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 77,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 71,
+                      "name": "lifeProof",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 68,
+                      "src": "277:9:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Proof_$66_storage",
+                        "typeString": "struct Life.Proof storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "hexValue": "445661756c74496e697469616c",
+                          "id": 73,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "295:15:1",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          },
+                          "value": "DVaultInitial"
+                        },
+                        {
+                          "argumentTypes": null,
+                          "hexValue": "445661756c74496e697469616c",
+                          "id": 74,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "311:15:1",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          },
+                          "value": "DVaultInitial"
+                        },
+                        {
+                          "argumentTypes": null,
+                          "hexValue": "445661756c74496e697469616c",
+                          "id": 75,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "string",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "327:15:1",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          },
+                          "value": "DVaultInitial"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          },
+                          {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          },
+                          {
+                            "typeIdentifier": "t_stringliteral_15f42abf39358cb85ee81cdd6f0d981e95e531d8854110fbf24ad228c0d983a8",
+                            "typeString": "literal_string \"DVaultInitial\""
+                          }
+                        ],
+                        "id": 72,
+                        "name": "Proof",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 66,
+                        "src": "289:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Proof_$66_storage_ptr_$",
+                          "typeString": "type(struct Life.Proof storage pointer)"
+                        }
+                      },
+                      "id": 76,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "289:54:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Proof_$66_memory",
+                        "typeString": "struct Life.Proof memory"
+                      }
+                    },
+                    "src": "277:66:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Proof_$66_storage",
+                      "typeString": "struct Life.Proof storage ref"
+                    }
+                  },
+                  "id": 78,
+                  "nodeType": "ExpressionStatement",
+                  "src": "277:66:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 80,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 69,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "258:2:1"
+            },
+            "returnParameters": {
+              "id": 70,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "267:0:1"
+            },
+            "scope": 107,
+            "src": "247:103:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 97,
+              "nodeType": "Block",
+              "src": "456:63:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 95,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 89,
+                      "name": "lifeProof",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 68,
+                      "src": "466:9:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Proof_$66_storage",
+                        "typeString": "struct Life.Proof storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 91,
+                          "name": "_fromUser",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 82,
+                          "src": "484:9:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 92,
+                          "name": "_date",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 84,
+                          "src": "495:5:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 93,
+                          "name": "_message",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 86,
+                          "src": "503:8:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          },
+                          {
+                            "typeIdentifier": "t_string_memory_ptr",
+                            "typeString": "string memory"
+                          }
+                        ],
+                        "id": 90,
+                        "name": "Proof",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 66,
+                        "src": "478:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Proof_$66_storage_ptr_$",
+                          "typeString": "type(struct Life.Proof storage pointer)"
+                        }
+                      },
+                      "id": 94,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "478:34:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Proof_$66_memory",
+                        "typeString": "struct Life.Proof memory"
+                      }
+                    },
+                    "src": "466:46:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Proof_$66_storage",
+                      "typeString": "struct Life.Proof storage ref"
+                    }
+                  },
+                  "id": 96,
+                  "nodeType": "ExpressionStatement",
+                  "src": "466:46:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 98,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "releaseLifeProof",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 87,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 82,
+                  "name": "_fromUser",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 98,
+                  "src": "382:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 81,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "382:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 84,
+                  "name": "_date",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 98,
+                  "src": "406:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 83,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "406:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 86,
+                  "name": "_message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 98,
+                  "src": "426:22:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 85,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "426:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "381:68:1"
+            },
+            "returnParameters": {
+              "id": 88,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "456:0:1"
+            },
+            "scope": 107,
+            "src": "356:163:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 105,
+              "nodeType": "Block",
+              "src": "584:33:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 103,
+                    "name": "lifeProof",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 68,
+                    "src": "601:9:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Proof_$66_storage",
+                      "typeString": "struct Life.Proof storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 102,
+                  "id": 104,
+                  "nodeType": "Return",
+                  "src": "594:16:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 106,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getLifeProof",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 99,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "546:2:1"
+            },
+            "returnParameters": {
+              "id": 102,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 101,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 106,
+                  "src": "570:12:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Proof_$66_memory_ptr",
+                    "typeString": "struct Life.Proof"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 100,
+                    "name": "Proof",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 66,
+                    "src": "570:5:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Proof_$66_storage_ptr",
+                      "typeString": "struct Life.Proof"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "569:14:1"
+            },
+            "scope": 107,
+            "src": "525:92:1",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 108,
+        "src": "102:517:1"
+      }
+    ],
+    "src": "33:586:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "1607680508158": {
+      "events": {},
+      "links": {},
+      "address": "0xC2E8B52a949DA315dcBBd68a80cc72FCE3d889f5",
+      "transactionHash": "0x59b131b7aa00110d4f369c765c1d01f3d470cf89b1371404d78bfe3164a5be6c"
+    }
+  },
+  "schemaVersion": "3.3.1",
+  "updatedAt": "2020-12-11T09:56:35.549Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

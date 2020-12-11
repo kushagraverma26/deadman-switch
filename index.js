@@ -45,7 +45,6 @@ app.use("/transactions", transactionRoutes);
 app.use("/proofs", proofRoutes);
 
 
-
 mongoose.connect("", { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
