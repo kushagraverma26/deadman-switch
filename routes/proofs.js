@@ -2,11 +2,12 @@ const express = require('express');
 const tokenToId = require("../helpers/tokenToId");
 var transactions = require('../models/transaction');
 var users = require('../models/user');
+var proofs = require('../models/proof');
 var moment = require('moment');
 
 const Web3 = require('web3');
-const MyContract = require('./build/contracts/Life.json');
-var blockchain = require('./config/blockchain');
+const MyContract = require('../build/contracts/Life.json');
+var blockchain = require('../config/blockchain');
 const Provider = require("@truffle/hdwallet-provider");
 
 var router = express.Router()
@@ -19,7 +20,7 @@ const url = blockchain.url;
 
 
 
-const releaseProof = async(userId, date, message) =>{
+const releaseProof = async(userId, date, months, message) =>{
     const provider = new Provider(privateKey, url);
     const web3 = new Web3(provider);
     const networkId = await web3.eth.net.getId();
@@ -27,7 +28,7 @@ const releaseProof = async(userId, date, message) =>{
 
     // View old value
     console.log(`old value:${await myContract.methods.getLifeProof().call()}`);
-    const receipt = await myContract.methods.releaseLifeProof(userId, date, message).send({from:address});
+    const receipt = await myContract.methods.releaseLifeProof(userId, date, months, message).send({from:address});
 
 
     console.log(receipt);
@@ -40,14 +41,15 @@ const releaseProof = async(userId, date, message) =>{
 
 
 
-router.post('/giveProof', userValidate, (req, res) => {
+router.post('/giveProof', userValidate,  async (req, res) => {
     console.log("Giving proof");
     // console.log(Date(Date.now));
+    // console.log(Date(Date.now).toString());
     // console.log(req.body.months);
     // console.log(req.body.userId);
     var userId = req.body.userId;
     // updating the release dates of the transactions set by the user.
-    // var receipt = await releaseData(allTransactions[i]['createdBy'].toString(),allTransactions[i]['createdFor'].toString(),allTransactions[i]['ipfsHash'].toString(),allTransactions[i]['transactionMessage'].toString());
+    var receipt = await releaseProof(userId.toString(), Date(Date.now).toString(),req.body.months.toString(),blockchain.defaultProofOfLifeMessage.toString());
 
     transactions.find({createdBy: userId, completed: false}).then((allTransactions) => {
         // console.log(transactions);
@@ -66,9 +68,35 @@ router.post('/giveProof', userValidate, (req, res) => {
                 }
               });
         } //For loop end
+
+
+        
     }).catch((err) => {
         res.status(400).send("Bad Request") 
     })
+
+    // var user = new users({
+    //     email: req.body.email,
+    //     password: hashedPassword,
+    //     firstName: req.body.firstName,
+    //     lastName: req.body.lastName,
+    //     phone: req.body.phone,
+    //     address: req.body.address,
+    //     secret: secret
+    //   })
+    //   var qr;
+    //   qrcode.toDataURL(secret.otpauth_url, function (err, data) {
+    //     qr = data;
+    //   });
+    //   user.save((err, newUser) => {
+    //     if (err) res.status(409).send(err)
+    //     else {
+    //       //var token = jwt.sign({ id: newUser._id }, config.secret, { expiresIn: 86400 });
+    //       res.send([newUser, { 'qrimage': qr }])
+    //     }
+    //   })
+
+
 })
 
 
