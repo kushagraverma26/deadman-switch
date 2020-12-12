@@ -15,6 +15,7 @@ const releaseData = async(fromUser, toUser, ipfsHash, message) =>{
     const provider = new Provider(privateKey, url);
     const web3 = new Web3(provider);
     const networkId = await web3.eth.net.getId();
+    console.log(networkId);
     const myContract = new web3.eth.Contract(MyContract.abi, MyContract.networks[networkId].address);
 
     console.log(`old value:${await myContract.methods.getData().call()}`);
@@ -31,7 +32,7 @@ const releaseData = async(fromUser, toUser, ipfsHash, message) =>{
 // const cronJob = 
 cron.schedule("* * * * *", async function () {
     console.log("running a task every midnight");
-    var allTransactions = await transactions.find({completed: false});
+    var allTransactions = await transactions.find({completed: true});
     console.log(allTransactions);
     for (i = 0; i < allTransactions.length; i++) {
       // if release date is less than current date then release the contract
@@ -46,7 +47,7 @@ cron.schedule("* * * * *", async function () {
     console.log(new Date(allTransactions[i]['releaseDate']));
     console.log(Date(Date.now()));
     console.log(new Date(allTransactions[i]['releaseDate']) <  new Date(Date.now()));
-    if (new Date(allTransactions[i]['releaseDate']) <  new Date(Date.now())){
+    if (new Date(allTransactions[i]['releaseDate']) >  new Date(Date.now())){
       var receipt = await releaseData(allTransactions[i]['createdBy'].toString(),allTransactions[i]['createdFor'].toString(),allTransactions[i]['ipfsHash'].toString(),allTransactions[i]['transactionMessage'].toString());
         transactions.findByIdAndUpdate(allTransactions[i]['_id'], { $set: { transactionDetails: JSON.stringify(receipt), completed: true } }, { new: true }, function (err, transaction) {
         if (err) {

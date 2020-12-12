@@ -48,6 +48,7 @@ router.post('/giveProof', userValidate,  async (req, res) => {
     // console.log(req.body.months);
     // console.log(req.body.userId);
     var userId = req.body.userId;
+    console.log(address);
     // updating the release dates of the transactions set by the user.
     var receipt = await releaseProof(userId.toString(), Date(Date.now).toString(),req.body.months.toString(),blockchain.defaultProofOfLifeMessage.toString());
 
@@ -69,33 +70,26 @@ router.post('/giveProof', userValidate,  async (req, res) => {
               });
         } //For loop end
 
+        var proof = new proofs({
+            userId: userId,
+            months: req.body.months,
+            transactionDetails: JSON.stringify(receipt),
+          })
+    
+          proof.save((err, proof) => {
+            if (err) res.status(409).send(err)
+            else {
+              res.send( {proof})
+            }
+          })
+    
 
         
     }).catch((err) => {
         res.status(400).send("Bad Request") 
     })
 
-    // var user = new users({
-    //     email: req.body.email,
-    //     password: hashedPassword,
-    //     firstName: req.body.firstName,
-    //     lastName: req.body.lastName,
-    //     phone: req.body.phone,
-    //     address: req.body.address,
-    //     secret: secret
-    //   })
-    //   var qr;
-    //   qrcode.toDataURL(secret.otpauth_url, function (err, data) {
-    //     qr = data;
-    //   });
-    //   user.save((err, newUser) => {
-    //     if (err) res.status(409).send(err)
-    //     else {
-    //       //var token = jwt.sign({ id: newUser._id }, config.secret, { expiresIn: 86400 });
-    //       res.send([newUser, { 'qrimage': qr }])
-    //     }
-    //   })
-
+    
 
 })
 
