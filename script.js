@@ -51,7 +51,7 @@ cron.schedule("* * * * *", async function () {
 
     if (new Date(allTransactions[i]['releaseDate']) < new Date(Date.now())) {
       var receipt = await releaseData(allTransactions[i]['createdBy'].toString(), allTransactions[i]['createdFor'].toString(), allTransactions[i]['ipfsHash'].toString(), allTransactions[i]['transactionMessage'].toString());
-      transactions.findByIdAndUpdate(allTransactions[i]['_id'], { $set: { transactionDetails: JSON.stringify(receipt), completed: true } }, { new: true }, function (err, transaction) {
+      await transactions.findByIdAndUpdate(allTransactions[i]['_id'], { $set: { transactionDetails: JSON.stringify(receipt), completed: true } }, { new: true }, async function  (err, transaction) {
         if (err) {
           console.log("DB error while updating the transaction document");
         }
@@ -59,7 +59,7 @@ cron.schedule("* * * * *", async function () {
           console.log(transaction);
 
           // Add a file to the received files for the recipient
-          users.findByIdAndUpdate(allTransactions[i]['createdFor'], { $inc: { 'receivedFiles': 1 } }, { new: true }, function (err, user) {
+          await users.findByIdAndUpdate(allTransactions[i]['createdFor'], { $inc: { 'receivedFiles': 1 } }, { new: true }, function (err, user) {
             if (err) {
               console.log(err);
             }

@@ -41,7 +41,8 @@ router.post('/setTransaction', userValidate, (req, res) => {
         createdFor: req.body.createdFor
     });
     transaction.save((err, newTransaction) => {
-        if (err) res.status(409).send(err)
+        if (err) { console.log(err);
+            res.status(409).send(err)}
         else {
             res.send(newTransaction)
         }
