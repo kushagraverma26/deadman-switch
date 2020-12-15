@@ -62,9 +62,9 @@ module.exports = {
       provider: function() {
         return new HDWalletProvider(
           //private keys array
-          ["7ee2e9de064e81d4ae85e576fa4a47d84a3e520065df0b1f01646ef0b482032f"],
+          [""],
           //url to ethereum node
-          "https://kovan.infura.io/v3/0e84b98ee61f45f0968a7aaf2460fef6"
+          ""
         )
       },
       gas: 5000000,
