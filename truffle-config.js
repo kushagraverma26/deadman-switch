@@ -23,7 +23,7 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
-
+const HDWalletProvider = require('truffle-hdwallet-provider-privkey');
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -58,7 +58,21 @@ module.exports = {
     // },
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
-    // ropsten: {
+    kovan: {
+      provider: function() {
+        return new HDWalletProvider(
+          //private keys array
+          ["7ee2e9de064e81d4ae85e576fa4a47d84a3e520065df0b1f01646ef0b482032f"],
+          //url to ethereum node
+          "https://kovan.infura.io/v3/0e84b98ee61f45f0968a7aaf2460fef6"
+        )
+      },
+      gas: 5000000,
+      gasPrice: 25000000000,
+      network_id: 42
+    },
+  
+      // ropsten: {
     // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/YOUR-PROJECT-ID`),
     // network_id: 3,       // Ropsten's id
     // gas: 5500000,        // Ropsten has a lower block limit than mainnet
@@ -72,7 +86,7 @@ module.exports = {
     // network_id: 2111,   // This network is yours, in the cloud.
     // production: true    // Treats this network as if it was a public net. (default: false)
     // }
-  },
+
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
@@ -93,4 +107,4 @@ module.exports = {
       // }
     },
   },
-};
+},};

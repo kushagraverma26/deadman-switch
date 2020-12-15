@@ -45,7 +45,7 @@ app.use("/transactions", transactionRoutes);
 app.use("/proofs", proofRoutes);
 
 
-mongoose.connect("", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://kushagra:kushagra@deadman.gmin2.mongodb.net/<test>?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {

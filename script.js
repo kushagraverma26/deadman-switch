@@ -13,8 +13,11 @@ const url = blockchain.url;
 
 
 const releaseData = async (fromUser, toUser, ipfsHash, message) => {
-  const provider = new Provider(privateKey, url);
-  const web3 = new Web3(provider);
+  // const provider = new Provider(privateKey, url);
+  // const web3 =   new Web3(provider);
+
+  const web3 = new Web3(blockchain.url);
+  
   const networkId = await web3.eth.net.getId();
   console.log(networkId);
   const myContract = new web3.eth.Contract(MyContract.abi, MyContract.networks[networkId].address);
@@ -49,7 +52,7 @@ cron.schedule("* * * * *", async function () {
     // console.log(Date(Date.now()));
     console.log(new Date(allTransactions[i]['releaseDate']) < new Date(Date.now()));
 
-    if (new Date(allTransactions[i]['releaseDate']) < new Date(Date.now())) {
+    if (new Date(allTransactions[i]['releaseDate']) > new Date(Date.now())) {
       var receipt = await releaseData(allTransactions[i]['createdBy'].toString(), allTransactions[i]['createdFor'].toString(), allTransactions[i]['ipfsHash'].toString(), allTransactions[i]['transactionMessage'].toString());
       await transactions.findByIdAndUpdate(allTransactions[i]['_id'], { $set: { transactionDetails: JSON.stringify(receipt), completed: true } }, { new: true }, async function  (err, transaction) {
         if (err) {

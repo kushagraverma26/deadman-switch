@@ -77,6 +77,7 @@ router.post('/giveProof', userValidate, async (req, res) => {
     proof.save((err, proof) => {
       if (err) res.status(409).send(err)
       else {
+        console.log(proof);
         res.send({ proof })
       }
     })
