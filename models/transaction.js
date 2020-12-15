@@ -8,7 +8,7 @@ var transaction = new Schema({
     fileName: { type: String, required: true },
     createdBy: { type: Schema.Types.ObjectId, ref: 'Users', required: true },
     // createdFor: { type: Schema.Types.ObjectId, ref: 'Users', required: true },
-    createdFor: { type: String, required: true },
+    createdFor: { type: Schema.Types.ObjectId, ref: 'Users', required: true },
     completed: { type: Boolean, default: false},
     createdDate: { type: Date, default: Date.now },
     releaseDate: { type: Date, required: true },

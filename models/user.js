@@ -24,7 +24,7 @@ var user = new Schema({
     secret: { type: Object, required: true },
     publicKey: { type: String, default: "" },
     validated: { type: Boolean, default: false },
-
+    receivedFiles: { type: Number, default: 0 },
     createdDate: { type: Date, default: Date.now }
 
 })

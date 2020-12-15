@@ -1,6 +1,6 @@
 module.exports = {
-    "address": "0x25662861844E925db0cf3Da76e97B057CcAEb1f2",
-    "privateKey" : "0x677d07a527de2ce867b9f683b1b44e05f01e8fa010e2762a3948a60f82e6f231",
+    "address": "0x8526b3d7D0086330Fc1b54bd3429a6ABF3a8D3f7",
+    "privateKey" : "0x64d2cc6d8ae32a81d6384afebe42b1b83a4274ccfdd4cdc38fa39c385ff4bab2",
     "url" : "http://localhost:8545",
     "defaultProofOfLifeMessage" : "Dvault Proof of life Transaction. Proof of life for the user. Issued on the given date and valid for the specified months from the issued date."
 }; 

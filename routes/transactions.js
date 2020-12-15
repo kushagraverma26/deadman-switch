@@ -10,7 +10,7 @@ var router = express.Router()
 //Get transactios for the current user API
 //For React App
 router.get("/myTransactions", userValidate, (req, res) => {
-    req.query['createdBy'] = req.body.userId;
+    // req.query['createdBy'] = req.body.userId;
     transactions.find(req.query).then((transactions) => {
         res.send(transactions)
     }).catch((err) => {
