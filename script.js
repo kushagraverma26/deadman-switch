@@ -13,12 +13,21 @@ const url = blockchain.url;
 
 
 const releaseData = async (fromUser, toUser, ipfsHash, message) => {
-  // const provider = new Provider(privateKey, url);
-  // const web3 =   new Web3(provider);
+  const provider = new Provider(privateKey, url);
+  const web3 =   new Web3(provider);
 
-  const web3 = new Web3(blockchain.url);
-  
-  const networkId = await web3.eth.net.getId();
+ 
+
+  // if (typeof web3 !== 'undefined') {
+  //   web3 = new Web3(web3.currentProvider);
+  //  } else {
+  //   // set the provider you want from Web3.providers
+  //   web3 = new Web3(new Web3.providers.HttpProvider(blockchain.url));
+  //  }
+
+   const networkId = await web3.eth.net.getId();
+
+
   console.log(networkId);
   const myContract = new web3.eth.Contract(MyContract.abi, MyContract.networks[networkId].address);
 
@@ -52,19 +61,29 @@ cron.schedule("* * * * *", async function () {
     // console.log(Date(Date.now()));
     console.log(new Date(allTransactions[i]['releaseDate']) < new Date(Date.now()));
 
-    if (new Date(allTransactions[i]['releaseDate']) > new Date(Date.now())) {
-      var receipt = await releaseData(allTransactions[i]['createdBy'].toString(), allTransactions[i]['createdFor'].toString(), allTransactions[i]['ipfsHash'].toString(), allTransactions[i]['transactionMessage'].toString());
+    if (new Date(allTransactions[i]['releaseDate']) < new Date(Date.now())) {
+
+      var fromUser = allTransactions[i]['createdBy'].toString();
+      var toUser =  allTransactions[i]['createdFor'].toString();
+      var ipfsHash = allTransactions[i]['ipfsHash'].toString();
+      var transactionMessage = allTransactions[i]['transactionMessage'].toString();
+      console.log()
+
+      var receipt = await releaseData(fromUser, toUser,ipfsHash , transactionMessage);
       await transactions.findByIdAndUpdate(allTransactions[i]['_id'], { $set: { transactionDetails: JSON.stringify(receipt), completed: true } }, { new: true }, async function  (err, transaction) {
         if (err) {
           console.log("DB error while updating the transaction document");
+          console.log("0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
         }
         else {
           console.log(transaction);
 
           // Add a file to the received files for the recipient
-          await users.findByIdAndUpdate(allTransactions[i]['createdFor'], { $inc: { 'receivedFiles': 1 } }, { new: true }, function (err, user) {
+          await users.findByIdAndUpdate(toUser, { $inc: { 'receivedFiles': 1 } }, { new: true }, function (err, user) {
             if (err) {
               console.log(err);
+              console.log("777777777777777777777777777777777777777777777777777777777777777777777777777777777");
+
             }
             else {
               console.log(user);
