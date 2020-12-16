@@ -31,7 +31,7 @@ const releaseData = async (fromUser, toUser, ipfsHash, message) => {
 
 
 // const cronJob = 
-cron.schedule("* * * * *", async function () {
+cron.schedule("0 0 * * *", async function () {
   console.log("running a task every midnight");
   var allTransactions = await transactions.find({ completed: false });
   console.log(allTransactions);

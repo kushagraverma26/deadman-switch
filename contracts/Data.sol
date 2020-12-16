@@ -14,7 +14,7 @@ contract Data {
 
     Released public data;
 
-    constructor() public{
+    constructor() public {
         data = Released("DVaultInitial","DVaultInitial","DVaultInitial","DVaultInitial");
     }
 
