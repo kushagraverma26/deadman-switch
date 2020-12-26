@@ -39,7 +39,7 @@ const releaseProof = async (userId, date, months, message) => {
 
 
 
-
+// API to give proof of life
 router.post('/giveProof', userValidate, async (req, res) => {
   console.log("Giving proof");
   // console.log(Date(Date.now));
@@ -90,9 +90,9 @@ router.post('/giveProof', userValidate, async (req, res) => {
 //For React App
 router.get("/myProofs", userValidate, (req, res) => {
   proofs.find(req.query).then((proofs) => {
-      res.send(proofs)
+    res.send(proofs)
   }).catch((err) => {
-      res.status(400).send("Bad Request")
+    res.status(400).send("Bad Request")
   })
 })
 

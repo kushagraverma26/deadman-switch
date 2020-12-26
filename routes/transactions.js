@@ -16,19 +16,9 @@ router.get("/myTransactions", userValidate, (req, res) => {
     }).catch((err) => {
         res.status(400).send("Bad Request")
     })
-    // tokenToId(req.get("token")).then((id) => {
-    //     req.query['createdBy'] = id
-    //     transactions.find(req.query).then((transactions) => {
-    //         res.send(transactions)
-    //     }).catch((err) => {
-    //         res.status(400).send("Bad Request")
-    //     })
-    // }).catch((err) => {
-    //     res.status(400).send("Bad Request")
-    // })
 })
 
-
+// API to set up a dead man switch
 router.post('/setTransaction', userValidate, (req, res) => {
     console.log("Setting new transactions");
     console.log(Date(Date.now))

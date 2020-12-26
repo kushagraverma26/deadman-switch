@@ -8,7 +8,7 @@ const qrcode = require('qrcode');
 var router = express.Router()
 
 
-
+// Registering a new user
 router.post("/registerUser", (req, res) => {
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   var secret = speakeasy.generateSecret({
@@ -30,13 +30,12 @@ router.post("/registerUser", (req, res) => {
   user.save((err, newUser) => {
     if (err) res.status(409).send(err)
     else {
-      //var token = jwt.sign({ id: newUser._id }, config.secret, { expiresIn: 86400 });
       res.send([newUser, { 'qrimage': qr }])
     }
   })
 })
 
-
+// Login using OTP
 router.post("/verifyOtp", (req, res) => {
   var secret;
   var id;
@@ -99,7 +98,6 @@ router.post("/userLogin", (req, res) => {
     else if (user == null) res.status(404).send("No account with given credentials exists")
     else {
       if (bcrypt.compareSync(req.body.password, user.password)) {
-        //var token = jwt.sign({ id: seller._id }, config.secret, { expiresIn: 86400 });
         res.send({ "validated": user.validated, "auth": true })
       }
       else res.status(403).send("Auth Error")
@@ -107,10 +105,6 @@ router.post("/userLogin", (req, res) => {
   })
 
 })
-
-
-
-
 
 
 module.exports = router

@@ -27,7 +27,6 @@ const releaseData = async (fromUser, toUser, ipfsHash, message) => {
   return receipt;
 }
 
-// releaseData().then(()=>{console.log("Ho gya")});
 
 
 // const cronJob = 
@@ -37,6 +36,7 @@ cron.schedule("0 0 * * *", async function () {
   console.log(allTransactions);
   for (i = 0; i < allTransactions.length; i++) {
     // if release date is less than current date then release the contract
+
     // console.log(allTransactions[i]['ipfsHash']);
     // console.log(typeof(allTransactions[i]['createdBy']));
     // console.log(typeof(allTransactions[i]['createdFor']));
@@ -44,9 +44,7 @@ cron.schedule("0 0 * * *", async function () {
     // console.log(typeof(allTransactions[i]['transactionMessage']));
 
     //   Release data if release date is less than current time
-    // var receipt = await releaseData("Testing","Testing","Testing","Testing");
-    // console.log(new Date(allTransactions[i]['releaseDate']));
-    // console.log(Date(Date.now()));
+
     console.log(new Date(allTransactions[i]['releaseDate']) < new Date(Date.now()));
 
     if (new Date(allTransactions[i]['releaseDate']) < new Date(Date.now())) {
@@ -73,8 +71,3 @@ cron.schedule("0 0 * * *", async function () {
     }
   }
 });
-//   module.exports = {
-//       releaseData: releaseData,
-//       cronJob: cronJob
-
-//   }

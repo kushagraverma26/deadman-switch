@@ -29,32 +29,22 @@ router.get("/myFiles", userValidate, (req, res) => {
 })
 
 
-
+// API to upload file
 router.post('/upload', userValidate, (req, res) => {
     console.log("Trying to upload file");
     var fileName = req.body.fileName;
     const fileData = req.body.fileData;
     const fileExtention = req.body.fileExtention;
     const createdBy = req.body.userId;
-
-
-
-
-
     files.find({ "createdBy": createdBy, "name": fileName }, (err, result) => {
-        // console.log(typeof(result));
-        // console.log(!result.length);
         if (err) {
             console.log("DB Error");
             return res.status(500).send(err);
         }
         else if (result.length) {
-            // console.log(result);
             console.log("File already exists, Renaming File");
             fileName = updateName(fileName);
             console.log(fileName);
-            // return res.status(500).send("File already exists");
-
         }
         const filePath = './files/' + fileName + fileExtention;
         console.log(filePath);
